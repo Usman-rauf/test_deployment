@@ -1,0 +1,86 @@
+<section>
+
+    <div class="container">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                Admin Dashboard
+            </a>
+
+
+            <div class="col-md-3 text-end">
+                <!-- Admin Profile -->
+                <a routerLink="/admindashboard" class="btn btn-outline-info">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <a routerLink="/admin" class="btn btn-outline-danger">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <div class="sidenav hidden-sm hidden-md" id="nav">
+        <div class="list">
+            <a routerLink="/admin-dashboard" class="active">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a routerLink="/admin-users">
+                <i class="fas fa-users"></i> Users
+            </a>
+            <a routerLink="/admin-certified">
+                <i class="fas fa-certificate"></i> Give Certificate
+            </a>
+            <a routerLink="/admin-courses">
+                <i class="fas fa-book-reader"></i> Courses
+            </a>
+            <a routerLink="/admin-payment">
+                <i class="far fa-credit-card"></i> Payments
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="grid">
+            <div class="mini-reports bg-blue">
+                <div class="l">
+                    <span>Total users</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-user c-blue"></i>
+                </div>
+            </div>
+            <div class="mini-reports bg-green">
+                <div class="l">
+                    <span>Total Courses</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-book-reader c-green"></i>
+                </div>
+            </div>
+            <div class="mini-reports bg-orange">
+                <div class="l">
+                    <span>Total Current Students</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-users c-orange"></i>
+                </div>
+            </div>
+            <div class="mini-reports bg-red">
+                <div class="l">
+                    <span>Online users</span>
+                </div>
+                <div class="r">
+                    <i class="fa fa-user c-red"></i>
+                </div>
+            </div>
+        </div>
+        <div class='Tables mx-auto '>
+            <h1 class='text-center text-bold text-danger mb-4'>Offline users</h1>
+            <table>Mat Data Table Offline Users table</table>
+            <h1 class='text-center text-bold text-success mb-4'>Online users</h1>
+            <table>Mat Data Table Online Users table</table>
+        </div>
+    </div>
+</section>

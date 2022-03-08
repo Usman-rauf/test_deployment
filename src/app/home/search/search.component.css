@@ -1,0 +1,16 @@
+.serarch-container{
+    position: relative;
+    display: block;
+    width: 100%;
+    background-image: url('../../../assets/search/search_banner.webp');
+    background-position: 100% 10%;
+    background-size: cover;
+    padding: 100px 0px;
+    background-color: var(--primary);
+  }
+  .filters-box button{
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

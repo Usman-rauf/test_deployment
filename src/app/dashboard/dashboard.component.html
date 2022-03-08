@@ -1,0 +1,50 @@
+<div class="sidebar">
+  <ul class="list-unstyled">
+    <li><a routerLink="/dashboard"><i class="fas fa-image"></i></a></li>
+    <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+      true}"><i class="fas fa-th"></i></a></li>
+    <li><a routerLink="/dashboard/profile" routerLinkActive="active"><i class="far fa-user"></i></a></li>
+    <li><a routerLink="/dashboard/video"><i class="far fa-envelope"></i></a></li>
+    <li><a routerLink="/dashboard"><i class="far fa-clock"></i></a></li>
+    <li><a routerLink="/dashboard"><i class="far fa-calendar-alt"></i></a></li>
+    <li><a routerLink="/dashboard/settings" routerLinkActive="active"><i class="fas fa-cog"></i></a></li>
+  </ul>
+</div>
+
+<div class="dashboard-content">
+  <nav class="navbar shadow navbar-expand-lg fixed-top navbar-light bg-white">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <input type="text" class="form-control search-control rounded-pill border-primary" placeholder="Search">
+          </li>
+        </ul>
+        <span class="navbar-text m-0 p-0">
+          <ul class="navbar-nav me-auto mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false"><i class="fas fa-user-circle"></i> {{data.name}}</a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" routerLink="/dashboard/profile">My Profile</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" routerLink="/login">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+  <div class="dashboard-page">
+    <router-outlet></router-outlet>
+  </div>
+</div>

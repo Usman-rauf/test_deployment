@@ -1,0 +1,16 @@
+.mask {
+  min-height: 50vh;
+  width: auto;
+  background-image: url('../../../assets/FAQ.jpg');
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  background-size:cover;
+  position: relative;
+  background-color: rgba(17, 46, 65, 0.6);
+}
+.mask .container .row,
+.mask .container{min-height: 50vh;}
+
+.accordion-button:not(.collapsed){
+  box-shadow: none !important;
+}

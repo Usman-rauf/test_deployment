@@ -1,0 +1,54 @@
+<app-sidebar></app-sidebar>
+
+<div class="content-2">
+    <div class="d-inline">
+        <nav class="navbar navbar-expand-lg navbar-dark" *ngIf="true">
+            <div class="container">
+                <a class="navbar-brand fs-3 ps-4" href="#" style="color: #575757;">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span></button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <input type="text"
+                                class="form-control border border-primary searchbar form-control-md rounded-pill ms-5"
+                                placeholder="What do you want to search">
+                            <!-- <i class="fas fa-search"></i> -->
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav me-auto m-0">
+                            <li class="nav-item">
+                                <div class="dropdown d-inline text-end">
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="me-4 mt-1"><i class="far fa-bell"></i></span>
+                                        <img src="../../../assets/profile.png" alt="mdo" width="32" height="32"
+                                            class="rounded-circle me-2">
+                                        <h5 class="dashboard-profile d-inline mx-auto">Ali
+                                            Safdar</h5>
+                                    </a>
+                                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                                        <li><a class="dropdown-item" routerLink="/dashboard/profile">Profile</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" routerLink="/login">
+                                                <button class="btn btn-outline-danger btn-sm d-block w-100" color="warn"
+                                                    type="button">Sign
+                                                    out</button></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>

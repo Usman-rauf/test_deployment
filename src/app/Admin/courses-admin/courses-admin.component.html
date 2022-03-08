@@ -1,0 +1,92 @@
+<section>
+    <div>
+
+        <nav class="topnav">
+            <div class="hidden-sm"></div>
+            <div class="user-menu">
+                <h1 class='text-white text-center'>Courses Panel</h1>
+
+                <div>
+                    <!-- Admin Profile -->
+                    <a routerLink="/admindashboard" class="btn btn-outline-info">
+                        <!-- <mat-icon>account_circle</mat-icon> -->
+                    </a>
+                    <a routerLink="/admin" class="btn btn-outline-danger">
+                        <!-- <mat-icon>exit_to_app</mat-icon> -->
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidenav hidden-sm hidden-md" id="nav">
+            <div class="list">
+                <a routerLink="/admin-dashboard">
+                    <!-- <mat-icon>home</mat-icon>&nbsp; -->
+                    Home
+                </a>
+                <a routerLink="/admin-users">
+                    <!-- <mat-icon>group</mat-icon>&nbsp;  -->
+                    User
+                </a>
+                <a routerLink="/admin-certified">
+                    <!-- <mat-icon>school</mat-icon>&nbsp; -->
+                    Give Certificate
+                </a>
+                <a routerLink="/admin-courses" class="active">
+                    <!-- <mat-icon>new_releases</mat-icon>&nbsp;  -->
+                    Courses
+                </a>
+                <a routerLink="/admin-payment">
+                    <!-- <mat-icon>business_center</mat-icon>&nbsp; -->
+                    Payments
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class='content'>
+            <div class="painel">
+                <div class="painel-header">
+                    <h2 class="text-center text-secondary">Courses Categories Section</h2>
+                </div>
+                <div class="painel-body">
+                    <form class="form-signin " enctype="multipart/form-data" name="form" id="form">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"> <strong>Name</strong> </label>
+                            <input type="name" name="Eventname" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea2"><strong> Any Description</strong></label>
+                            <textarea class="form-control rounded-0" name="Description" id="exampleFormControlTextarea2"
+                                rows="3" required></textarea>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1"><strong> Any related image</strong></label>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Eventimage"
+                                accept="image/*" required>
+                        </div>
+
+                        <div class="form-group">
+                            <img class="card-img-top" id="output">
+                        </div>
+
+                        <button type="sumbit" name="Add" id="Submit" class="btn btn-lg btn-success btn-block   ">
+                            Course Category</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,165 @@
+<app-header></app-header>
+
+<div class="main-banner">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 order-2 order-md-1">
+        <h2 class="text-primary fw-bold fs-1 m-0">Enjoy virtual learning and freelance services round the clock.</h2>
+        <p class="fs-4"><i class="fw-bold">Protors</i> is a home for world class professionals, subjects matters expert, freelancers, teachers and students.</p>
+        <button class="btn btn-pink btn-lg rounded-pill">Button <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="col-md-6 mb-3 m-md-0 order-1 order-md-2">
+        <img class="img-fluid rounded shadow" src="../../assets/bg.jpg" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="mb-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-md-4 py-3 text-center">
+        <h6>Trusted By</h6>
+        <h3>1.5M+ <span>Students</span></h3>
+      </div>
+
+      <div class="col-6 col-md-4 py-3 text-center">
+        <h6>Total Courses</h6>
+        <h3>25,000,000</h3>
+      </div>
+      <div class="col-6 col-md-4 py-3 text-center">
+        <h6>Paid</h6>
+        <h3>$54,000,000</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-5">
+        <h2 class="text-gray fs-2 fs-md-5 fw-bold">Top Rated Courses</h2>
+        <p class="fs-4 text-gray m-0">Explore the following area as a list of courses available</p>
+        <p class="fs-4 text-gray m-0">to you as tutuor or as a students.</p>
+      </div>
+      <div class="col-md-12">
+        <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" >
+          <div ngxSlickItem *ngFor="let slide of slides" class="slide top-course-box">
+                <img src="{{ slide.img }}" alt="" width="100%">
+                <div class="bg-overlay"></div>
+                <div class="overlay">
+                  <p class="m-0">Chase your dream</p>
+                  <h4 class="m-0">Photography</h4>
+                </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="for-student__container bg-theme-gradient py-5 text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2 class="mb-3 fs-1 fw-bold">FOR STUDENTS</h2>
+        <p class="fs-2 lh-sm fw-normal">We have a network of experienced individuals who are available to guide you to your goals</p>
+        <p class="fs-5 fw-light">They have acquired knowledge in the area you're looking to explore and are willing to share the knowledge with you and your convenience.</p>
+        <h3>How it works:</h3>
+        <ul class="list-unstyled mb-4 fs-5 fw-light">
+          <li class="mb-2"><i class="far fa-check-circle"></i> Sign up as a student</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Browse the subject are to browse</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Setup your profile & schedule</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Find a suitable teacher</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Begin learning</li>
+        </ul>
+        <button class="btn btn-lg btn-default bg-white rounded-pill fw-bold text-primary">Begin Here <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="col-md-6">
+        <div class="position-relative">
+          <img class="img-fluid rounded-15 back_img d-block mx-auto" src="../../../../assets/pexels-werner-pfennig-6482133.jpg" height="350px" width="400px">
+          <img class="img-fluid rounded-15 overlay_img" src="../../../../assets/baner2.jpg" width="200px" height="200px">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="for-tutor__container py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 order-2 order-md-1">
+        <div class="position-relative text-end">
+          <img class="img-fluid rounded-15 back_img d-block mx-auto" src="../../../../assets//pexels-mikhail-nilov-7582651.jpg">
+          <img class="img-fluid rounded-15 overlay_img" src="../../../../assets/bn3.jpg">
+        </div>
+      </div>
+      <div class="col-md-6 text-gray order-1 order-md-2">
+        <h2 class="text-primary fs-1">EARN AS A TUTORS</h2>
+        <p class="fs-2 lh-small">
+          We are graduate student, a teacher, a writer, a professional/expert in a subject area, a consultant or senior /retiree.
+        </p>
+        <p class="fs-5 fw-light">
+          We have an audience that needs your skill set and experties. You would love applying it here.
+        </p>
+        <h3 class="fs-2 lh-small">How it works:</h3>
+        <ul class="list-unstyled mb-4 fs-5 fw-light">
+          <li class="mb-2">These easy steps will get you started</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Browse our job opportunites</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Express your interest by completing this form</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Get Verified</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Familiarize yourseld with Protors</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Setup your profile & schedule</li>
+          <li class="mb-2"><i class="far fa-check-circle"></i> Meet your students and begin knowledge transfer</li>
+        </ul>
+        <button class="btn btn-lg btn-pink rounded-pill">Begin Here <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <h3 class="text-primary fw-bold fs-1">What they're saying</h3>
+        <p class="text-gray fs-3">Million+ of students, tuturs & freelancer has rated us 4.9+</p>
+      </div>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig2" >
+                <div ngxSlickItem *ngFor="let slide of slides" class="card mx-2 rounded-20 overflow-hidden slide">
+                  <img src="../../../../assets/feed.jpg" class="card-img-top " alt="...">
+                  <div class="card-body">
+                    <p class="card-text text-gray">
+                      "My grades are up! My tutor Vincent was patient with me. Thank you. Best site ever!"
+                    </p>
+                    <p class="text-primary">- Samaiya Vandal, Sri Lanka</p>
+                  </div>
+                </div>
+            </ngx-slick-carousel>
+          </div>
+          <div class="col-md-3 d-none">
+            <div class="card w-100 rounded-20 overflow-hidden">
+              <img src="../../../../assets/feed.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-gray">
+                  "My grades are up! My tutor Vincent was patient with me. Thank you. Best site ever!"
+                </p>
+                <p class="text-primary">- Samaiya Vandal, Sri Lanka</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

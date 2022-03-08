@@ -1,0 +1,160 @@
+<section>
+    <div>
+
+        <nav class="topnav">
+            <div class="hidden-sm"></div>
+            <div class="user-menu">
+                <h1 class='text-white text-center'>Certificate Panel</h1>
+
+                <div>
+                    <!-- Admin Profile -->
+                    <a routerLink="/admindashboard" class="btn btn-outline-info">
+                        <i>account_circle</i>
+                    </a>
+                    <a routerLink="/admin" class="btn btn-outline-danger">
+                        <i>exit_to_app</i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidenav hidden-sm hidden-md" id="nav">
+            <div class="list">
+                <a routerLink="/admin-dashboard">
+                    <i>home</i>&nbsp;
+                    Home
+                </a>
+                <a routerLink="/admin-users">
+                    <i>group</i>&nbsp;
+                    User
+                </a>
+                <a routerLink="/admin-certified" class="active">
+                    <i>school</i>&nbsp;
+                    Give Certificate
+                </a>
+                <a routerLink="/admin-courses">
+                    <i>new_releases</i>&nbsp;
+                    Courses
+                </a>
+                <a routerLink="/admin-payment">
+                    <i>business_center</i>&nbsp;
+                    Payments
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class='content'>
+            <div class="painel">
+                <div class="painel-header">
+                    <h2 class="text-center text-secondary">Certificate Section</h2>
+                </div>
+                <div class="painel-body">
+                    <form action="" method="POST" class="form-signin " enctype="multipart/form-data" name="form"
+                        id="form">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"> <strong>Name</strong> </label>
+                            <input type="name" name="Eventname" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea2"><strong> Any Description</strong></label>
+                            <textarea class="form-control rounded-0" name="Description" id="exampleFormControlTextarea2"
+                                rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <strong>Start Date</strong>
+                            <input type="date" id="startdate" name="stdate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <strong>End Date</strong>
+                            <input type="date" id="enddate" name="enddate" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1"><strong> Add image</strong></label> &nbsp;&nbsp;&nbsp;
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Eventimage"
+                                accept="image/*" required>
+                        </div>
+
+                        <div class="form-group">
+                            <img class="card-img-top" id="output">
+                        </div>
+
+                        <button type="sumbit" name="Add" id="Submit"
+                            class="btn btn-lg btn-success btn-block   ">Give</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <!------ Include the above in your HEAD tag ---------->
+        <h1 class='text-center text-primary mt-2 mb-4'>Certificate</h1>
+
+        <div class='painel-bodys'>
+
+            <table class='table table-bordered'>
+                <thead>
+                    <tr>
+                        <th scope='col'>id</th>
+                        <th scope='col'>Course Name </th>
+                        <th scope='col'>Details</th>
+                        <th scope='col'>Start Date</th>
+                        <th scope='col'>End Date</th>
+                        <th scope='col'>Image</th>
+                        <th scope='col'>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                <tbody>
+                    <tr>
+
+                        <td scope='row'>
+                            <!-- ID -->
+
+                        </td>
+                        <td scope='row'>
+                            <!-- Course -->
+
+                        </td>
+
+                        <td scope='row'>
+                            <!-- Detail -->
+
+                        </td>
+                        <td scope='row'>
+                            <!-- Start -->
+
+                        </td>
+                        <td scope='row'>
+                            <!-- End -->
+
+                        </td>
+
+                        <td scope='row'> <img src="###" class="img rounded-circle" height="100px"> </td>
+                        <td scope='row'>
+                            <!-- ##### -->
+                        </td>
+                        <td scope='row'>
+                            <button href="###" class="btn btn-info"> <span class="fa fa-eye"></span>Edit
+                            </button>
+                            &nbsp;<button class="btn btn-danger"><span class="fa fa-trash"></span>Delete</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>

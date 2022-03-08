@@ -1,0 +1,36 @@
+.contact-container{
+  position: relative;
+  display: block;
+  width: 100%;
+  background-image: url('../../../assets/contact/contact.jpg');
+  background-position: 100% 10%;
+  background-size: cover;
+  padding: 100px 0px;
+  background-color: var(--primary);
+  min-height: 50vh;
+}
+
+.contact-form{
+  position: relative;
+  margin-top: -30vh;
+}
+
+.form-control{
+  border: 1px solid rgb(197, 197, 197) !important;
+  padding: 10px;
+}
+/*
+goalbytes@1234
+
+CREATE USER 'goalbytes'@'localhost' IDENTIFIED BY 'goalbytes@1234';
+
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'goalbytes'@'localhost' WITH GRANT OPTION;
+
+mmuser:goalbytes:goalbytes@1234@tcp(localhost:3306)/mattermost?charset=utf8mb4,utf8&writeTimeout=30s
+
+mysql -u goalbytes -p
+
+GRANT PRIVILEGE ON database.mattermost TO goalbytes@localhost;
+
+GRANT ALL PRIVILEGES ON *.* TO 'goalbytes'@'localhost';
+*/

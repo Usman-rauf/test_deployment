@@ -1,0 +1,13 @@
+.right-sidebar{
+    position: fixed;
+    background-color: #f3f3f3;
+    right: 0px;
+    top: 55px;
+    width: 300px;
+    height: calc(100vh - 55px);
+    overflow-y: scroll;
+}
+
+.content{
+    padding-right: 300px;
+}

@@ -1,0 +1,40 @@
+.main {
+  height: max-content;
+  width: 100%;
+  background: white;
+  background-image: url("../../../assets/bg.jpg"); /* fallback */
+  background-image: url("../../../assets/bg.jpg"),
+    linear-gradient(rgba(0, 0, 0, 0.5));
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding: 0;
+}
+
+.mask {
+  min-height: calc(65vh - 65px);
+  background-color: rgba(18, 40, 54, 0.5);
+}
+
+.heading {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+
+.fpassword {
+  float: right;
+  color: #777;
+  font-size: 12px;
+  margin: auto;
+  outline: none;
+  padding: auto 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  margin: auto;
+}
