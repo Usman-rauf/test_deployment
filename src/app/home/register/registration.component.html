@@ -3,21 +3,21 @@
 <section class="register">
   <div class="mask"></div>
   <div class="container h-100">
-    <div class="row align-items-center h-100">
-      <div class="col-md-6 text-white mb-4 m-md-0">
+    <div class="row content align-items-center h-100">
+      <div class="col-md-6 text-content text-white mb-4 m-md-0">
         <h2 class="fs-1">Welcome to Protors</h2>
         <p class="m-0 fs-5">Looking to gain knowledge as a student or share knowledge</p>
         <p class="m-0 fs-5">as an instructor/tutor? Signup to Continue!</p>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-5">
-        <div class="bg-white p-3 p-md-5  rounded-15 shadow">
+      <div class="col-md-5 form-content">
+        <div class="bg-white form-signup p-3 p-md-5  rounded-15 shadow">
           <div class="text-start mb-4">
             <h3 class="fs-2 mb-1 text-primary">Sign up</h3>
             <h4 class="fs-3 text-secondary">to join Protors</h4>
           </div>
 
-          <form class="form-signup text-black mx-auto" #Signup="ngForm" [formGroup]="register"
+          <form class="form text-black mx-auto" #Signup="ngForm" [formGroup]="register"
             (ngSubmit)="onClickSubmit(register.value)">
             <div class="row">
               <div class="col-md-12">
@@ -37,19 +37,19 @@
                 <div class="btn-group" role="group">
                   <input type="radio" class="btn-check" name="role" formControlName="role" id="teacher" value="Teacher"
                     autocomplete="off" checked>
-                  <label class="btn btn-outline-primary" for="teacher"><i class="fas fa-user-tie"></i>
+                  <label class="btn btn-outline-primary label-group" for="teacher"><i class="fas fa-user-tie"></i>
                     Teacher</label>
                   <input type="radio" class="btn-check" name="role" formControlName="role" id="student" value="Student"
                     autocomplete="off">
-                  <label class="btn btn-outline-primary" for="student"><i class="fas fa-user-graduate"></i>
+                  <label class="btn btn-outline-primary label-group" for="student"><i class="fas fa-user-graduate"></i>
                     Student</label>
                   <input type="radio" class="btn-check" name="role" formControlName="role" id="enterprise"
                     value="Enterprise" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="enterprise"><i class="fas fa-user"></i>
+                  <label class="btn btn-outline-primary label-group" for="enterprise"><i class="fas fa-user"></i>
                     Enterprise</label>
                   <input type="radio" class="btn-check" name="role" formControlName="role" id="freelancer"
                     value="Freelancer" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="freelancer"><i class="fas fa-user"></i>
+                  <label class="btn btn-outline-primary label-group" for="freelancer"><i class="fas fa-user"></i>
                     Freelancer</label>
                 </div>
               </div>

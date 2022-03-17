@@ -57,6 +57,11 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 600px) {
+  .add i {
+    font-size: 12px !important;
+    margin-left: 8px !important;
+  }
+
   .editbtn {
     font-size: 12px !important;
     margin-left: 9px !important;
@@ -72,7 +77,16 @@
     font-size: 10px !important;
   }
 }
-@media screen and (min-width: 400px) and (max-width: 800px) {
+
+@media screen and (min-width: 400px) and (max-width: 700px) {
+  .add {
+    width: 100px !important;
+    font-size: 13px !important;
+  }
+  .add i {
+    font-size: 8px !important;
+    margin-left: 8px !important;
+  }
   .editbtn {
     width: 60px !important;
   }
@@ -85,11 +99,18 @@
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 900px) {
+@media screen and (min-width: 700px) and (max-width: 920px) {
+  .head {
+    display: block !important;
+  }
   .add {
-    display: flex;
-    width: 70px !important;
-    font-size: 13px !important;
+    width: 120px !important;
+    font-size: 18px !important;
+    margin-bottom: 15px !important;
+  }
+  .add i {
+    font-size: 12px !important;
+    margin-left: 8px !important;
   }
   .editbtn {
     width: 92px !important;
@@ -107,5 +128,19 @@
   .deletebtn i {
     font-size: 15px !important;
     margin-left: 5px !important;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  .head {
+    margin-right: 10px !important;
+  }
+  .add {
+    width: 120px !important;
+    font-size: 16px !important;
+  }
+  .add i {
+    font-size: 12px !important;
+    margin-left: 8px !important;
   }
 }
