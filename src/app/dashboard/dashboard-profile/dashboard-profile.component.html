@@ -53,7 +53,7 @@
                 <p class="fw-bold m-0 text-uppercase">Achievements</p>
               </div>
               <div><i class="fas fa-plus text-primary" type="button" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal2"></i></div>
+                  data-bs-target="#exampleModal21"></i></div>
             </div>
             <div class="profile-education-card mb-2">
               <div class="d-flex">
@@ -118,16 +118,16 @@
           </div>
         </ng-container>
 
-        <ng-container *ngIf="data.role=='Teacher'">
+        <ng-container *ngIf="data.role=='Teacher' || data.role=='Freelancer' || data.role=='Enterprise'">
 
           <div class="for-teachers">
             <div class="row">
               <div class="col-md-10">
-                <h3 class="fs-4">Courses (For Teachers Side)</h3>
+                <h3 class="fs-4">Courses</h3>
               </div>
               <div class="col-md-2">
-                <button class="btn button-bg text-white btn d-block rounded-pill" type="button" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal4">
+                <button class="btn button-bg add text-white btn d-block rounded-pill" type="button"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal4">
                   Add Courses
                 </button>
               </div>
@@ -141,10 +141,11 @@
                   <small class="m-0 text-muted border-start ps-2">Total Lectures: 10</small>
                 </div>
                 <div>
-                  <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal41" (click)="onEdit(course)">Edit Course</button>
-                  <button class="btn btn-sm btn-primary ms-2" (click)="onDeleteCourse(course._id)">Delete
-                    Course</button>
+                  <button class="btn btn-sm editbtn btn-primary" type="button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal41" (click)="onEdit(course)">Edit<i
+                      class="ms-2 fa fa-edit"></i></button>
+                  <button class="btn btn-sm deletebtn btn-primary ms-2" (click)="onDeleteCourse(course._id)">Delete<i
+                      class="ms-2 fa fa-trash"></i></button>
                 </div>
               </div>
             </div>
@@ -153,11 +154,11 @@
           <div class="for-teachers">
             <div class="row">
               <div class="col-md-10">
-                <h3 class="fs-4">Catalogs (For Teachers Side)</h3>
+                <h3 class="fs-4">Catalogs</h3>
               </div>
               <div class="col-md-2">
-                <button class="btn button-bg text-white btn d-block rounded-pill" type="button" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal5">
+                <button class="btn button-bg add text-white btn d-block rounded-pill" type="button"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal5">
                   Add Catalogs
                 </button>
               </div>
@@ -171,10 +172,11 @@
                   <small class="m-0 text-muted border-start ps-2">Total Lectures: 10</small>
                 </div>
                 <div>
-                  <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal51" (click)="onEdit(catalog)">Edit Catalog</button>
-                  <button class="btn btn-sm btn-primary ms-2" (click)="onDeleteCatalog(catalog._id)">Delete
-                    Catalog</button>
+                  <button class="btn btn-sm editbtn btn-primary" type="button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal51" (click)="onEdit(catalog)">Edit<i
+                      class="ms-2 fa fa-edit"></i></button>
+                  <button class="btn deletebtn btn-sm btn-primary ms-2" (click)="onDeleteCatalog(catalog._id)">Delete<i
+                      class="ms-2 fa fa-trash"></i></button>
                 </div>
               </div>
             </div>
@@ -248,7 +250,7 @@
 <!-- Achievements Modal -->
 <div class="conatiner">
   <!-- Modal -->
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal21" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -256,10 +258,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form #f="ngForm" [formGroup]="formValue">
+          <form #f="ngForm" [formGroup]="achievementValue" (ngSubmit)="onSave()">
             <div class="mb-3">
-              <label for="exampleInputPrice" class="form-label">Image</label>
-              <input formControlName="file" name="file" id="file" type="file" class="form-control"
+              <input formControlName="file" name="image" id="file" type="file" class="form-control"
                 (change)="onFileChange($event)" #Image accept="image/*">
             </div>
             <div class="mb-3">
@@ -270,16 +271,21 @@
               <label for="exampleInputDescription" class="form-label">Description</label>
               <input type="text" formControlName="description" class="form-control" id="description">
             </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="submit" (click)="saveAdd(achievementValue.value)">Save
+                changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" (click)="onSave()">Save changes</button>
-
+        <!-- <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" (click)="saveAdd(achievementValue.value)">Save changes</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+        </div> -->
       </div>
     </div>
-  </div> -->
+  </div>
 </div>
 
 <!-- Add Course Modal -->

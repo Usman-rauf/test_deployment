@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow navbar-dark bg-theme-gradient">
   <div class="container">
-    <a class="navbar-brand fs-3" href="#">Protors</a>
+    <a class="navbar-brand fs-3" href="#">
+      <img src="../../../assets/search/protors logo white.png" class="img-fluid" width="130px" height="70px" alt="">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,8 +10,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <input type="text" class="form-control searchbar form-control-sm rounded-pill"
-            placeholder="What do you want to search">
+          <input type="text" id="searchName" list="datalist" class="form-control searchbar form-control-sm rounded-pill"
+            placeholder="What do you want to search" (keyup)="usersSearched($event)" [(ngModel)]="searchquery">
+          <datalist id="datalist">
+            <option *ngFor="let user of searchData" [value]="user">
+              {{ user }}
+            </option>
+          </datalist>
         </li>
       </ul>
       <span class="navbar-text p-0">
@@ -40,10 +47,12 @@
           <span class="navbar-text m-0 p-0" *ngIf="!data">
             <ul class="navbar-nav me-auto mb-lg-0">
               <li class="nav-item">
-                <a class="btn me-3 btn-outline-default border-white rounded-pill" routerLink="/login">Sign In</a>
+                <a class="btn me-3 btn-outline-default border-white rounded-pill" id="sign-in" routerLink="/login">Sign
+                  In</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-outline-default bg-white text-dark rounded-pill" routerLink="/registration">Sign
+                <a class="btn btn-outline-default bg-white text-dark rounded-pill" id="sign-up"
+                  routerLink="/registration">Sign
                   Up</a>
               </li>
             </ul>
@@ -67,3 +76,26 @@
     </div>
   </div>
 </nav>
+<script>
+  $(function () {
+    $('#searchName').autocomplete({
+      source: function (req, res) {
+
+        $.ajax({
+          url: "/autocomplete/", dataType: 'jsonp', type: "GET", data: req, success: function (data) {
+
+          },
+          error: function (err) {
+            console.log(error.status)
+          }
+        });
+      },
+      minLength: 1,
+      select: function (e, ui) {
+        if (ui.item) {
+          $('#searchName').text(ui.item.label)
+        }
+      }
+    })
+  })
+</script>

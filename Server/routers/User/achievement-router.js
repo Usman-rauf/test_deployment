@@ -12,34 +12,36 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../User/uploads')
+    cb(null, './upload')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + "." + Date.now() + path.extname(file.originalname))
+
   }
 })
 
 const upload = multer({ storage: fileStorageEngine });
 
-router.post('/achievements', verifyToken, async (req, res) => {
+router.post('/achievements', upload.single('file'), async (req, res) => {
 
   const file = req.file.filename
+
   const { name, description } = req.body
-  const userId = req.user.id
+  // const userId = req.user.id
 
   console.log(req.body.file)
   console.log(req.body.name)
   console.log(req.body.description)
 
-  return false
-
   if (!(file, name, description)) {
     return res.json({ status: 'error', error: 'Field is Empty' })
   }
 
+  // userId
+
   try {
     const response = await achievement.create({
-      userId, name, description, file
+      name, description, file
     })
     res.json({ status: 'ok', message: "Achievments Added Successfully", response })
   } catch (error) {

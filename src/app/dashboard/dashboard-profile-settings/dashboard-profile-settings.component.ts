@@ -46,6 +46,7 @@ export class DashboardProfileSettingsComponent implements OnInit {
     this.UserService.settings(user).subscribe((data: any) => {
       if (data) {
         try {
+          console.log(data);
           window.alert('User Info Changed Successfully');
         } catch (err: any) {
           console.log(err);

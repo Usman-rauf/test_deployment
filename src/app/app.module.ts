@@ -31,6 +31,7 @@ import {
   ContactComponent,
   LoginComponent,
   RegistrationComponent,
+  HomeProfileComponent,
 } from './home';
 
 import {
@@ -100,6 +101,7 @@ FullCalendarModule.registerPlugins([
     ProfilingComponent,
     FAQComponent,
     BlogComponent,
+    HomeProfileComponent,
     // DASHBOARD COMPONENTS
     DashboardComponent,
     DashboardMainComponent,

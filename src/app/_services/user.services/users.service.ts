@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ import { environment } from '../../../environments/environment';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  /* User Login/Registration Services */
   create(user: any) {
     return this.http.post(`${environment.apiUrl}/register`, user);
   }
@@ -28,9 +30,22 @@ export class UserService {
     return this.http.post(`${environment.apiUrl}/create-password`, user);
   }
 
+  getUsers() {
+    return this.http.get(`${environment.apiUrl}/users`);
+  }
   getteacherUser() {
     return this.http.get(`${environment.apiUrl}/specific-tuser`);
   }
+
+  getfreelancerUser() {
+    return this.http.get(`${environment.apiUrl}/specific-fuser`);
+  }
+
+  getenterpriseUser() {
+    return this.http.get(`${environment.apiUrl}/specific-euser`);
+  }
+
+  /* User Courses Services */
 
   addCourse(data: any) {
     console.log(data);
@@ -67,6 +82,8 @@ export class UserService {
     console.log('Params', params);
     return this.http.delete(`${environment.apiUrl}/course`, { params: params });
   }
+
+  /* User Catalog Services */
 
   addCatalog(data: any) {
     return this.http.post(`${environment.apiUrl}/catalog`, data);
@@ -112,18 +129,28 @@ export class UserService {
     return this.http.post(`${environment.apiUrl}/buy-catalog`, data);
   }
 
+  /* User Search Services */
+
   getsearch(data: any = {}) {
     let params = new HttpParams()
       .append('type', data.searchType)
       .append('searchquery', data.query)
       .append('price', data.price);
-    console.log('Params', params);
     return this.http.get(`${environment.apiUrl}/search`, { params: params });
   }
+
+  searchData(data: any = {}) {
+    let params = new HttpParams().append('q', data);
+    return this.http.get(`${environment.apiUrl}/searched`, { params: params });
+  }
+
+  /* User Contact Services */
 
   sendContact(data: any) {
     return this.http.post(`${environment.apiUrl}/contact`, data);
   }
+
+  /* User Achievement Services */
 
   addAchievement(data: any) {
     console.log(data);
@@ -134,16 +161,36 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/achievements`, data);
   }
 
-  getBlogs() {
-    return this.http.get(`${environment.apiUrl}/blogs`);
-  }
-
   deleteAchievement(data: any) {
     return this.http.delete(`${environment.apiUrl}/achievements`, data);
   }
 
+  /* User Blogs Services */
+
+  getBlogs() {
+    return this.http.get(`${environment.apiUrl}/blogs`);
+  }
+
+  publicProfile(data: any) {
+    let params = new HttpParams().append('id', data);
+    console.log('Params', params);
+    return this.http.get(`${environment.apiUrl}/home-profile`, {
+      params: params,
+    });
+  }
+
+  /* User Profiles Services */
+
   userprofile(data: any) {
     return this.http.get(`${environment.apiUrl}/profile`, data);
+  }
+
+  publicViewprofile(data: any) {
+    let params = new HttpParams().append('id', data);
+    console.log('Params', params);
+    return this.http.get(`${environment.apiUrl}/home-profile`, {
+      params: params,
+    });
   }
 
   userRatings(data: any) {

@@ -1,3 +1,31 @@
+<div class="content py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <div class="bg-primary bg-main p-4 rounded-15 text-white">
+          <div class="row">
+            <div class="col-md-8">
+              <h2 class="fs-2 mb-3">{{data.name}}</h2>
+              <p class="fs-5">We cater to students who are looking to unlock new levels of understanding on their
+                knowledge path.</p>
+            </div>
+            <div class="col-md-4">
+              <img class="img-fluid rounded-15" src="../../../assets/FAQ.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="dashboard-calendar p-2">
+          <full-calendar class="full-calendar" id="full-calendar" [deepChangeDetection]="true"
+            [options]="calendarOptions"></full-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="right-sidebar py-3">
   <div class="container-fluid">
     <div class="row">
@@ -33,33 +61,6 @@
           </div>
         </section>
 
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="content py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 mb-3">
-        <div class="bg-primary p-4 rounded-15 text-white">
-          <div class="row">
-            <div class="col-md-8">
-              <h2 class="fs-2 mb-3">{{data.name}}</h2>
-              <p class="fs-5">We cater to students who are looking to unlock new levels of understanding on their
-                knowledge path.</p>
-            </div>
-            <div class="col-md-4">
-              <img class="img-fluid rounded-15" src="../../../assets/FAQ.jpg" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-12">
-        <div class="dashboard-calendar p-2">
-          <full-calendar class="full-calendar" [deepChangeDetection]="true" [options]="calendarOptions"></full-calendar>
-        </div>
       </div>
     </div>
   </div>

@@ -16,42 +16,44 @@ router.get('/search', async (req, res) => {
     var query = {};
     var result = [];
 
-    if (type === "everything") {
+    if (type === "search") {
 
       var query1 = {}
       if (searchquery && searchquery !== '' && searchquery !== "undefined") { query1.name = searchquery; }
       if (price && price !== '' && price !== "undefined") { query1.price = price; }
-      console.log("Everything", query2)
+      console.log("Everything", query1)
       result.push(new Promise(async (resolve, reject) => {
-        const output = await User.find(query1);
+        const output1 = await User.find(query1);
         const search = {
-          Users: output
+          Users: output1
         }
         console.log(search)
         resolve(search);
       }));
+
 
       var query2 = {}
       if (searchquery && searchquery !== '' && searchquery !== "undefined") { query2.coursename = searchquery; }
       if (price && price !== '' && price !== "undefined") { query2.price = price; }
       console.log("Everything", query2)
       result.push(new Promise(async (resolve, reject) => {
-        const output = await Course.find(query2);
+        const output2 = await Course.find(query2);
         const search = {
-          Courses: output
+          Courses: output2
         }
         console.log(search)
         resolve(search);
       }));
 
-      var query3
+      var query3 = {}
+      console.log(query3.catalogname)
       if (searchquery && searchquery !== '' && searchquery !== "undefined") { query3.catalogname = searchquery; }
       if (price && price !== '' && price !== "undefined") { query3.price = price; }
       console.log("Everything", query3)
       result.push(new Promise(async (resolve, reject) => {
-        const output = await Catalog.find(query3);
+        const output3 = await Catalog.find(query3);
         const search = {
-          Catalog: output
+          Catalog: output3
         }
         console.log(search)
         resolve(search);
@@ -115,6 +117,43 @@ router.get('/search', async (req, res) => {
     throw error
   }
 })
+
+router.get("/searched", async (req, res) => {
+  const { q } = req.query
+  console.log(req.query)
+
+  try {
+    let result = []
+    result.push(new Promise(async (resolve, reject) => {
+      const output1 = await User.find({ "name": q });
+      const search = {
+        Users: output1
+      }
+      console.log(search)
+      resolve(search);
+    }));
+    result.push(new Promise(async (resolve, reject) => {
+      const output2 = await Course.find({ "coursename": q });
+      const search = {
+        Course: output2
+      }
+      console.log(search)
+      resolve(search);
+    }));
+    result.push(new Promise(async (resolve, reject) => {
+      const output3 = await Catalog.find({ "catalogname": q });
+      const search = {
+        Catalog: output3
+      }
+      console.log(search)
+      resolve(search);
+    }));
+
+    return res.status(200).json(await Promise.all(result));
+  } catch (e) {
+    response.status(500).send({ message: e.message });
+  }
+});
 
 module.exports = router
 

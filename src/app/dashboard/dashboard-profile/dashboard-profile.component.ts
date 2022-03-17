@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalstorageService, UserService } from '../../_services/index';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard-profile',
@@ -10,13 +10,13 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class DashboardProfileComponent implements OnInit {
   file: any;
   data: any = [];
+  Image: any;
   bioData: any = FormGroup;
   educationData: any = FormGroup;
   enrolledtCourse: any = [];
   enrolledsCourse: any = [];
   enrolledtCatalog: any = [];
   enrolledsCatalog: any = [];
-  formValue!: FormGroup;
   courseValue: any = FormGroup;
   catalogValue: any = FormGroup;
   achievementValue: any = FormGroup;
@@ -53,9 +53,16 @@ export class DashboardProfileComponent implements OnInit {
     });
 
     this.achievementValue = this.modal.group({
-      file: [''],
-      name: [''],
-      description: [''],
+      name: ['', Validators.required],
+      file: ['', [Validators.required]],
+      description: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(1000),
+        ]),
+      ],
     });
 
     this.getuser();
@@ -131,41 +138,39 @@ export class DashboardProfileComponent implements OnInit {
     });
   }
 
-  // onAdd() {
-  //   this.formValue.controls['file'];
-  //   this.formValue.controls['name'];
-  //   this.formValue.controls['description'];
-  // }
-
   onFileChange(event: any) {
-    const reader = new FileReader();
-
-    this.file = event.target.files;
-    console.log(this.file);
-
-    if (event.target.files && event.target.files.length) {
-      reader.readAsDataURL(<File>event.target.files[0]);
-    }
+    this.Image = event.target.files;
+    console.log(this.Image);
   }
 
-  // onSave() {
-  //   console.log(this.formValue.value);
+  onSave() {
+    console.log(this.achievementValue.value);
+    console.log(this.Image[0]);
 
-  //   const fd = new FormData();
-  //   fd.append('file', this.file[0]);
-  //   fd.append('name', this.formValue.value.name);
-  //   fd.append('description', this.formValue.value.description);
+    var fd = new FormData();
+    fd.append('file', this.Image[0]);
+    fd.append('name', this.achievementValue.value.name);
+    fd.append('description', this.achievementValue.value.description);
 
-  //   this.UserService.addAchievement(fd).subscribe((res: any) => {
-  //     if (res) {
-  //       try {
-  //         window.alert('Successfully Added New Product');
-  //       } catch {
-  //         window.alert('Error Occur during saving');
-  //       }
-  //     }
-  //   });
-  // }
+    console.log(fd);
+
+    return false;
+    this.UserService.addAchievement(fd).subscribe((data: any) => {
+      if (data.status == 'ok') {
+        try {
+          window.alert('Successfully Added New Product');
+        } catch {
+          window.alert('Error Occur during saving');
+        }
+      } else {
+        console.log(data);
+      }
+    });
+  }
+
+  saveAdd(data: any) {
+    console.log(data);
+  }
 
   addCourse(data: any) {
     console.log(this.courseValue.value);

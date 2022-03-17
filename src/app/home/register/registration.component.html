@@ -17,7 +17,7 @@
             <h4 class="fs-3 text-secondary">to join Protors</h4>
           </div>
 
-          <form class="form-signup text-black " style="margin: auto;" #Signup="ngForm" [formGroup]="register"
+          <form class="form-signup text-black mx-auto" #Signup="ngForm" [formGroup]="register"
             (ngSubmit)="onClickSubmit(register.value)">
             <div class="row">
               <div class="col-md-12">
@@ -39,16 +39,18 @@
                     autocomplete="off" checked>
                   <label class="btn btn-outline-primary" for="teacher"><i class="fas fa-user-tie"></i>
                     Teacher</label>
-
                   <input type="radio" class="btn-check" name="role" formControlName="role" id="student" value="Student"
                     autocomplete="off">
                   <label class="btn btn-outline-primary" for="student"><i class="fas fa-user-graduate"></i>
                     Student</label>
-
-                  <input type="radio" class="btn-check" name="role" formControlName="role" id="parent" value="Parent"
-                    autocomplete="off">
-                  <label class="btn btn-outline-primary" for="parent"><i class="fas fa-user"></i>
-                    Parent</label>
+                  <input type="radio" class="btn-check" name="role" formControlName="role" id="enterprise"
+                    value="Enterprise" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="enterprise"><i class="fas fa-user"></i>
+                    Enterprise</label>
+                  <input type="radio" class="btn-check" name="role" formControlName="role" id="freelancer"
+                    value="Freelancer" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="freelancer"><i class="fas fa-user"></i>
+                    Freelancer</label>
                 </div>
               </div>
               <div class="col-md-12 mb-4">

@@ -1,6 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const User = require('../../modals/users')
+const Course = require('../../modals/cousres')
+const Catalog = require('../../modals/catalog')
+const Achievement = require('../../modals/achievments')
 const verifyToken = require('../../middleware/auth')
 const router = express()
 router.use(bodyParser.json())
@@ -64,6 +67,39 @@ router.get('/profile', verifyToken, async (req, res) => {
 
     const profile = await User.aggregate(p_data);
     res.json({ status: 'ok', message: "Profile: ", profile })
+
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.json({ status: 'error', error: '403' })
+    }
+    throw error
+  }
+
+});
+
+router.get('/home-profile', async (req, res) => {
+  const { id } = req.query
+  console.log('Public Profile', id)
+  // var result = [];
+
+  try {
+    // result.push(new Promise(async (resolve, reject) => {
+    //   const output = await Course.findOne({ teacherId: id });
+    //   resolve(output);
+    // }));
+    // result.push(new Promise(async (resolve, reject) => {
+    //   const output1 = await Catalog.findOne({ teacherId: id });
+    //   resolve(output1);
+    // }));
+
+    // return res.status(200).json(await Promise.all(result));
+
+    const profile = await User.find({ _id: id });
+    const output = await Course.find({ teacherId: id });
+    const output1 = await Catalog.find({ teacherId: id });
+    const output2 = await Achievement.find({ teacherId: id });
+
+    res.json({ status: 'ok', message: "Profile: ", profile, output, output1, output2 })
 
   } catch (error) {
     if (error.code === 11000) {

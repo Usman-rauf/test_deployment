@@ -8,3 +8,4 @@ export * from './blog/blog.component';
 export * from './contact/contact.component';
 export * from './login/login.component';
 export * from './register/registration.component';
+export * from './home-profile/home-profile.component';

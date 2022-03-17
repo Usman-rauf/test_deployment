@@ -35,7 +35,7 @@ router.post('/register', body('email').isEmail().normalizeEmail(), async (req, r
     return res.json({ status: 'error', error: 'Invalid Gender' })
   }
 
-  if (!['Teacher', 'Student', 'Parent', 'Entrepreneur'].includes(role)) {
+  if (!['Teacher', 'Student', 'Parent', 'Enterprise', 'Freelancer'].includes(role)) {
     return res.json({ status: 'error', error: 'Invalid Role' })
   }
 
@@ -193,10 +193,17 @@ router.post('/settings', verifyToken, async (req, res) => {
   console.log(req.body)
   try {
     const userId = req.user.id
-    const user = await User.findOne({ _id: userId });
+    const teacherId = req.user.id
+
+    const user = await User.findOne({ _id: userId } || {
+      _id: teacherId
+    });
+
 
     if (name && email) {
-      const response = await User.updateOne({ _id: userId }, {
+      const response = await User.updateOne({ _id: userId } || {
+        _id: teacherId
+      }, {
         $set: {
           name: name,
           email: email,
@@ -206,7 +213,9 @@ router.post('/settings', verifyToken, async (req, res) => {
     }
 
     if (name === '' && email) {
-      const response = await User.updateOne({ _id: userId }, {
+      const response = await User.updateOne({ _id: userId } || {
+        _id: teacherId
+      }, {
         $set: {
           email: email,
         }
@@ -214,7 +223,9 @@ router.post('/settings', verifyToken, async (req, res) => {
       return res.status(200).json({ response })
     }
     if (email === '' && name) {
-      const response = await User.updateOne({ _id: userId }, {
+      const response = await User.updateOne({ _id: userId } || {
+        _id: teacherId
+      }, {
         $set: {
           name: name,
         }
@@ -223,15 +234,18 @@ router.post('/settings', verifyToken, async (req, res) => {
     }
 
     if (plainTextPassword && newpassword && plainTextPassword !== '') {
-      bcrypt.compare(req.body.newpassword, user.password)
-      const password = await bcrypt.hash(plainTextPassword, 8)
-      if (password) {
-        const response = await User.updateOne({ _id: userId }, {
-          $set: {
-            password: password,
-          }
-        })
-        return res.status(200).json({ response })
+      if (user && await bcrypt.compare(plainTextPassword, user.password)) {
+        const password = await bcrypt.hash(newpassword, 8)
+        if (password) {
+          const response = await User.updateOne({ _id: userId } || {
+            _id: teacherId
+          }, {
+            $set: {
+              password: password,
+            }
+          })
+          return res.status(200).json({ response })
+        }
       }
     }
 

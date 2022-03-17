@@ -14,8 +14,7 @@
             <div class="col-md-4 mb-3">
               <label class="form-label">Search By Type</label>
               <select class="form-control" (change)="search($event)" *ngIf="type==='search'">
-                <option disabled selected>Select</option>
-                <option value="everything">Everything</option>
+                <option disabled selected>Everything</option>
                 <option value="teachers">Teacher</option>
                 <option value="freelancers">Freelancer</option>
                 <option value="enterprises">Enterprises</option>
@@ -87,9 +86,10 @@
 </section>
 
 <div class="container">
-  <div class="row" *ngIf="type==='search'">
-    <div class="col-md-3 mb-3" *ngFor="let user of searchData">
-      <div class="card" *ngIf="result===true">
+
+  <div class="row">
+    <div class="col-md-3 mb-3" *ngFor="let user of searchUser;">
+      <div class="card" *ngIf="result === true">
         <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
         <div class="card-body">
           <div class="d-flex">
@@ -100,20 +100,113 @@
           </div>
           <p class="mb-2 fw-light">Specialization</p>
           <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
-          <a href="#" class="btn btn-pink rounded-pill">Profile <i class="fas fa-chevron-right"></i></a>
+          <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3" *ngFor="let course of searchCourse">
+      <div class="card" *ngIf="result===true">
+        <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+        <div class="card-body">
+          <h5 class="card-title">{{course.coursename}}</h5>
+          <hr class="my-2">
+          <div class="d-flex fs-6 align-items-center">
+            <div class="flex-grow-1">Price</div>
+            <div class="fw-bold fs-6">{{course.price}} $</div>
+          </div>
+          <hr class="my-2">
+          <p class="card-text">{{course.description}}</p>
+          <a class="btn btn-pink rounded-pill" (click)="getCourse(course._id)">Details <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3" *ngFor="let catalog of searchCatalog">
+      <div class="card" *ngIf="result===true">
+        <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+        <div class="card-body">
+          <h5 class="card-title">{{catalog.catalogname}}</h5>
+          <hr class="my-2">
+          <div class="d-flex fs-6 align-items-center">
+            <div class="flex-grow-1">Price</div>
+            <div class="fw-bold fs-6">{{catalog.price}} $</div>
+          </div>
+          <hr class="my-2">
+          <p class="card-text">{{catalog.description}}</p>
+          <a class="btn btn-pink rounded-pill" (click)="getCatalog(catalog._id)"> Details <i
+              class="fas fa-chevron-right"></i></a>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+  <div class="row" *ngIf="type==='search'">
+
+    <div class="col-md-3 mb-3" *ngFor="let user of searchData1;">
+      <div class="card" *ngIf="result === true">
+        <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="flex-grow-1">
+              <h5 class="card-title">{{user.name}}</h5>
+            </div>
+            <div class="fw-normal">4.9 <i class="fas text-warning fa-star"></i></div>
+          </div>
+          <p class="mb-2 fw-light">Specialization</p>
+          <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
+          <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3" *ngFor="let course of searchData2">
+      <div class="card" *ngIf="result===true">
+        <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+        <div class="card-body">
+          <h5 class="card-title">{{course.coursename}}</h5>
+          <hr class="my-2">
+          <div class="d-flex fs-6 align-items-center">
+            <div class="flex-grow-1">Price</div>
+            <div class="fw-bold fs-6">{{course.price}} $</div>
+          </div>
+          <hr class="my-2">
+          <p class="card-text">{{course.description}}</p>
+          <a class="btn btn-pink rounded-pill" (click)="getCourse(course._id)">Details <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3" *ngFor="let catalog of searchData3">
+      <div class="card" *ngIf="result===true">
+        <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+        <div class="card-body">
+          <h5 class="card-title">{{catalog.catalogname}}</h5>
+          <hr class="my-2">
+          <div class="d-flex fs-6 align-items-center">
+            <div class="flex-grow-1">Price</div>
+            <div class="fw-bold fs-6">{{catalog.price}} $</div>
+          </div>
+          <hr class="my-2">
+          <p class="card-text">{{catalog.description}}</p>
+          <a class="btn btn-pink rounded-pill" (click)="getCatalog(catalog._id)"> Details <i
+              class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <section class="search-results py-5">
   <div class="container">
-
     <!-- TEACHERS -->
     <div class="row" *ngIf="type==='teachers'">
-      <div class="col-md-3 mb-3" *ngFor="let user of userData;">
+      <div class="col-md-3 mb-3" *ngFor="let user of userteacherData;">
         <div class="card" *ngIf="result === false">
           <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
           <div class="card-body">
@@ -125,14 +218,15 @@
             </div>
             <p class="mb-2 fw-light">Specialization</p>
             <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-pink rounded-pill">Profile <i class="fas fa-chevron-right"></i></a>
+            <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row" *ngIf="type==='teachers'">
-      <div class="col-md-3 mb-3" *ngFor="let user of userData">
+      <div class="col-md-3 mb-3" *ngFor="let user of userteacherData">
         <div class="card" *ngIf="result===true">
           <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
           <div class="card-body">
@@ -144,7 +238,8 @@
             </div>
             <p class="mb-2 fw-light">Specialization</p>
             <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-pink rounded-pill">Profile <i class="fas fa-chevron-right"></i></a>
+            <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -152,13 +247,28 @@
 
     <!-- ENTERPRISES -->
     <div class="row" *ngIf="type==='enterprises'">
-      <div class="col-md-3 mb-3" *ngFor="let course of counter(8);">
-        <div class="card">
+      <div class="col-md-3 mb-3" *ngFor="let user of userenterpriseData;">
+        <div class="card" *ngIf="result === false">
           <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
           <div class="card-body">
-            <h5 class="card-title">Enterprises Name</h5>
+            <h5 class="card-title">{{user.name}}</h5>
             <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-pink rounded-pill">Profile <i class="fas fa-chevron-right"></i></a>
+            <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="type==='enterprises'">
+      <div class="col-md-3 mb-3" *ngFor="let user of userenterpriseData;">
+        <div class="card" *ngIf="result === true">
+          <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+          <div class="card-body">
+            <h5 class="card-title">{{user.name}}</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
+            <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </div>
@@ -166,23 +276,45 @@
 
     <!-- FREELANCERS -->
     <div class="row" *ngIf="type==='freelancers'">
-      <div class="col-md-3 mb-3" *ngFor="let course of counter(8);">
-        <div class="card">
+      <div *ngFor="let user of usefreelancerData">
+        <div class="col-md-3 mb-3" *ngIf="user.role=='Freelancer'">
+          <div class="card" *ngIf="result === false">
+            <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <h5 class="card-title">{{user.name}}</h5>
+                </div>
+                <div class="fw-normal">4.9 <i class="fas text-warning fa-star"></i></div>
+              </div>
+              <p class="fw-light mb-2">Service</p>
+              <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
+              <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                  class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="type==='freelancers'">
+      <div class="col-md-3 mb-3" *ngFor="let user of usefreelancerData">
+        <div class="card" *ngIf="result === true">
           <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
           <div class="card-body">
             <div class="d-flex">
               <div class="flex-grow-1">
-                <h5 class="card-title">Freelancer Name</h5>
+                <h5 class="card-title">{{user.name}}</h5>
               </div>
               <div class="fw-normal">4.9 <i class="fas text-warning fa-star"></i></div>
             </div>
             <p class="fw-light mb-2">Service</p>
             <p class="card-text">Lorem ipsum dolor sit amet, elit amet consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-pink rounded-pill">Profile <i class="fas fa-chevron-right"></i></a>
+            <a class="btn btn-pink rounded-pill" (click)="getUser(user._id)">Profile <i
+                class="fas fa-chevron-right"></i></a>
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- COURSES -->

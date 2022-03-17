@@ -11,6 +11,7 @@ import {
   ContactComponent,
   LoginComponent,
   RegistrationComponent,
+  HomeProfileComponent,
 } from './home';
 import { DetailsComponent } from './home/course-details/details.component';
 
@@ -42,6 +43,10 @@ const routes: Routes = [
   { path: 'blogs', component: BlogComponent },
   { path: 'course/:id', component: DetailsComponent },
   { path: 'catalog/:id', component: CatalogDetailsComponent },
+  {
+    path: 'profile/:id',
+    component: HomeProfileComponent,
+  },
 
   /* DASHBOARD */
   {

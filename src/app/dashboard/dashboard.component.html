@@ -1,10 +1,11 @@
 <div class="sidebar">
   <ul class="list-unstyled">
-    <li><a routerLink="/dashboard"><i class="fas fa-image"></i></a></li>
+    <li><a routerLink="/dashboard"><img src="../../assets/search/protors favicon.png" class="img-fluid sidebar-logo"
+          alt=""></a></li>
     <li><a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
       true}"><i class="fas fa-th"></i></a></li>
     <li><a routerLink="/dashboard/profile" routerLinkActive="active"><i class="far fa-user"></i></a></li>
-    <li><a routerLink="/dashboard/video"><i class="far fa-envelope"></i></a></li>
+    <li><a routerLink="/dashboard"><i class="far fa-envelope"></i></a></li>
     <li><a routerLink="/dashboard"><i class="far fa-clock"></i></a></li>
     <li><a routerLink="/dashboard"><i class="far fa-calendar-alt"></i></a></li>
     <li><a routerLink="/dashboard/settings" routerLinkActive="active"><i class="fas fa-cog"></i></a></li>
@@ -19,10 +20,16 @@
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarText">
+      <div class="collapse navbar-collapse mt-3" id="navbarText">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <input type="text" class="form-control search-control rounded-pill border-primary" placeholder="Search">
+            <input type="text" list="datalist" class="form-control search-control rounded-pill border-primary"
+              placeholder="Search" (keyup)="usersSearched($event)" [(ngModel)]="searchquery">
+            <datalist id="datalist">
+              <option *ngFor="let user of searchData" [value]="user">
+                {{ user }}
+              </option>
+            </datalist>
           </li>
         </ul>
         <span class="navbar-text m-0 p-0">
