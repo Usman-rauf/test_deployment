@@ -4,33 +4,43 @@
   <div class="container">
     <div class="row">
       <div class="col-md">
-        <h1 class="text-center">Catalog Details</h1>
-        <div class="card">
-          <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
-          <div class="card-body">
-            <div class="d-flex fs-6 align-items-center">
-              <div class="flex-grow-1">Catalog Name</div>
-              <h5 class="card-title">{{data.catalogname}}</h5>
+
+        <div class="card p-5">
+          <div class="row">
+            <div class="col md-6">
+              <img src="../../../../assets/cards.jpg" class="card-img-top img-fluid" alt="Image Title">
             </div>
-            <hr class="my-2">
-            <div class="d-flex fs-6 align-items-center">
-              <div class="flex-grow-1">Price</div>
-              <div class="fw-bold fs-6">{{data.price}} $</div>
+            <div class="col-md-6">
+              <div class="card-body mt-5">
+                <div class="d-flex fs-6 align-items-center">
+                  <div class="flex-grow-1">Catalog Name</div>
+                  <h5 class="card-title">{{data.catalogname}}</h5>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex fs-6 align-items-center">
+                  <div class="flex-grow-1">Price</div>
+                  <div class="fw-bold fs-6">{{data.price}} $</div>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex fs-6 align-items-center">
+                  <div class="flex-grow-1">Country</div>
+                  <div class="fs-6">{{data.country}}</div>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex fs-6 align-items-center">
+                  <div class="flex-grow-1">Description</div>
+                  <p class="card-text">{{data.description}}</p>
+                </div>
+                <hr class="my-2">
+                <a class="btn btn-pink rounded-pill mt-3" *ngIf="user" (click)="enrollCatalog(data)">Enroll / Buy
+                  Catalog <i class="fas fa-chevron-right"></i></a>
+                <a class="btn btn-pink rounded-pill mt-3" *ngIf="!user" routerLink="/login">Enroll / Buy Catalog <i
+                    class="fas fa-chevron-right"></i></a>
+              </div>
             </div>
-            <hr class="my-2">
-            <div class="d-flex fs-6 align-items-center">
-              <div class="flex-grow-1">Country</div>
-              <div class="fs-6">{{data.country}}</div>
-            </div>
-            <hr class="my-2">
-            <div class="d-flex fs-6 align-items-center">
-              <div class="flex-grow-1">Description</div>
-              <p class="card-text">{{data.description}}</p>
-            </div>
-            <hr class="my-2">
-            <a class="btn btn-pink rounded-pill" (click)="enrollCatalog(data)">Enroll Course <i
-                class="fas fa-chevron-right"></i></a>
           </div>
+
+
         </div>
       </div>
     </div>

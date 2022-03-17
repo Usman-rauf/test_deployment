@@ -81,8 +81,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.searchUser = data[0].Users;
         this.searchCourse = data[1].Course;
         this.searchCatalog = data[2].Catalog;
-
-        console.log(this.searchUser, this.searchCourse, this.searchCatalog);
       } else {
         (err: any) => {
           console.log(err);
@@ -98,9 +96,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
       let data = { searchType, query: this.searchquery, price: this.price };
       this.UserService.getsearch(data).subscribe((data: any) => {
         if (data) {
-          this.searchData1 = data[0].Users;
-          this.searchData2 = data[1].Courses;
-          this.searchData3 = data[2].Catalog;
           this.courseData = data[0];
           this.catalogData = data[0];
           this.userteacherData = data[0];

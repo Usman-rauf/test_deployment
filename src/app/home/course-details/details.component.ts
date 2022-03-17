@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/_services';
+import { UserService, LocalstorageService } from 'src/app/_services';
 
 @Component({
   selector: 'app-details',
@@ -9,13 +9,22 @@ import { UserService } from 'src/app/_services';
 })
 export class DetailsComponent implements OnInit {
   public data: any = [];
+  public user: any;
+
   constructor(
+    public router: Router,
     public activated: ActivatedRoute,
-    private UserService: UserService
+    private UserService: UserService,
+    private userdata: LocalstorageService
   ) {}
 
   ngOnInit(): void {
     this.courseDetail();
+    this.getuser();
+  }
+
+  getuser() {
+    this.user = this.userdata.getUser();
   }
 
   courseDetail() {
@@ -41,6 +50,7 @@ export class DetailsComponent implements OnInit {
           this.data = res;
           console.log(this.data);
           window.alert('Enrolled Successful');
+          this.router.navigate(['/dashboard/profile']);
         } catch {
           window.alert('Error Occur');
         }
