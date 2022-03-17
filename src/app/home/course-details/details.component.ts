@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, LocalstorageService } from 'src/app/_services';
 
@@ -7,9 +7,14 @@ import { UserService, LocalstorageService } from 'src/app/_services';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, AfterViewInit {
   public data: any = [];
   public user: any;
+  public courseData: any = [];
+  public catalogData: any = [];
+  public enrolledsCatalog: any = [];
+  public enrolledsCourse: any = [];
+  public result = true;
 
   constructor(
     public router: Router,
@@ -21,7 +26,11 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.courseDetail();
     this.getuser();
+
+    this.getstudentCourses();
   }
+
+  ngAfterViewInit(): void {}
 
   getuser() {
     this.user = this.userdata.getUser();
@@ -33,8 +42,7 @@ export class DetailsComponent implements OnInit {
     });
     this.UserService.getCourse(this.data).subscribe((res: any) => {
       if (res) {
-        this.data = res.course;
-        console.log(this.data);
+        this.courseData = res.course;
       } else {
         (err: any) => {
           console.log(err);
@@ -48,7 +56,6 @@ export class DetailsComponent implements OnInit {
       if (res) {
         try {
           this.data = res;
-          console.log(this.data);
           window.alert('Enrolled Successful');
           this.router.navigate(['/dashboard/profile']);
         } catch {
@@ -56,6 +63,23 @@ export class DetailsComponent implements OnInit {
         }
       } else {
         console.log(data);
+      }
+    });
+  }
+
+  getstudentCourses() {
+    this.UserService.getstudentCourses().subscribe((data: any) => {
+      if (data.status == 'ok') {
+        this.enrolledsCourse = data.course;
+        for (let user of this.enrolledsCourse) {
+          if (this.data == user.courseId) {
+            this.result = false;
+          }
+        }
+      } else {
+        (err: any) => {
+          console.log(err);
+        };
       }
     });
   }

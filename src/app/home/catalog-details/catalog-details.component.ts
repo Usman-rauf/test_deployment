@@ -10,6 +10,9 @@ import { UserService, LocalstorageService } from 'src/app/_services';
 export class CatalogDetailsComponent implements OnInit {
   public data: any = [];
   public user: any;
+  public result = true;
+  public enrolledsCatalog: any = [];
+  public catalogData: any = [];
 
   constructor(
     public router: Router,
@@ -21,6 +24,7 @@ export class CatalogDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.catalogDetail();
     this.getuser();
+    this.getstudentCatalogs();
   }
 
   getuser() {
@@ -34,8 +38,8 @@ export class CatalogDetailsComponent implements OnInit {
     this.UserService.getCatalog(this.data).subscribe((res: any) => {
       if (res) {
         console.log(res);
-        this.data = res.catalog;
-        console.log(this.data);
+        this.catalogData = res.catalog;
+        console.log(this.catalogData);
       } else {
         (err: any) => {
           console.log(err);
@@ -57,6 +61,22 @@ export class CatalogDetailsComponent implements OnInit {
         }
       } else {
         console.log(data);
+      }
+    });
+  }
+  getstudentCatalogs() {
+    this.UserService.getstudentCatalogs().subscribe((data: any) => {
+      if (data.status == 'ok') {
+        this.enrolledsCatalog = data.catalog;
+        for (let user of this.enrolledsCatalog) {
+          if (this.data == user.catalogId) {
+            this.result = false;
+          }
+        }
+      } else {
+        (err: any) => {
+          console.log(err);
+        };
       }
     });
   }

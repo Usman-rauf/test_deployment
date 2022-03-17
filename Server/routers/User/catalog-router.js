@@ -37,16 +37,16 @@ router.post('/catalog', verifyToken, async (req, res) => {
 })
 
 router.post('/buy-catalog', verifyToken, async (req, res) => {
-  const { teacherId, Image, catalogname, country, price, description } = req.body
+  const { _id, teacherId, Image, catalogname, country, price, description } = req.body
 
-  console.log({ "Catalogs": req.body })
+  const catalogId = _id
   const userId = req.user.id
 
 
   try {
     if (userId) {
       const response = await Buy.create({
-        userId, teacherId, Image, catalogname, country, price, description
+        catalogId, userId, teacherId, Image, catalogname, country, price, description
       })
       res.json({ status: 'ok', message: "Catalog Successful", response })
     }

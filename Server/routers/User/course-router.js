@@ -39,16 +39,16 @@ router.post('/course', verifyToken, async (req, res) => {
 })
 
 router.post('/enroll-course', verifyToken, async (req, res) => {
-  const { teacherId, Image, coursename, country, price, description } = req.body
+  const { _id, teacherId, Image, coursename, country, price, description } = req.body
 
-  console.log({ "Cousrses": req.body })
+  const courseId = _id
   const userId = req.user.id
 
 
   try {
     if (userId) {
       const response = await Enroll.create({
-        userId, teacherId, Image, coursename, country, price, description
+        courseId, userId, teacherId, Image, coursename, country, price, description
       })
       res.json({ status: 'ok', message: "Course Added Successful", response })
     }

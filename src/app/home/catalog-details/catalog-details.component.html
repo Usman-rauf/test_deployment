@@ -14,28 +14,30 @@
               <div class="card-body mt-5">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Catalog Name</div>
-                  <h5 class="card-title">{{data.catalogname}}</h5>
+                  <h5 class="card-title">{{catalogData.catalogname}}</h5>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Price</div>
-                  <div class="fw-bold fs-6">{{data.price}} $</div>
+                  <div class="fw-bold fs-6">{{catalogData.price}} $</div>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Country</div>
-                  <div class="fs-6">{{data.country}}</div>
+                  <div class="fs-6">{{catalogData.country}}</div>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Description</div>
-                  <p class="card-text">{{data.description}}</p>
+                  <p class="card-text">{{catalogData.description}}</p>
                 </div>
                 <hr class="my-2">
-                <a class="btn btn-pink rounded-pill mt-3" *ngIf="user" (click)="enrollCatalog(data)">Enroll / Buy
-                  Catalog <i class="fas fa-chevron-right"></i></a>
-                <a class="btn btn-pink rounded-pill mt-3" *ngIf="!user" routerLink="/login">Enroll / Buy Catalog <i
-                    class="fas fa-chevron-right"></i></a>
+                <span *ngIf="result">
+                  <a class="btn btn-pink rounded-pill mt-3" *ngIf="user" (click)="enrollCatalog(catalogData)">Enroll /
+                    Buy
+                    Catalog <i class="fas fa-chevron-right"></i></a>
+                  <a class="btn btn-pink rounded-pill mt-3" *ngIf="!user" routerLink="/login">Enroll / Buy Catalog <i
+                      class="fas fa-chevron-right"></i></a></span>
               </div>
             </div>
           </div>

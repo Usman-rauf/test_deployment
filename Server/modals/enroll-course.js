@@ -30,6 +30,11 @@ const CourseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users'
     },
+    courseId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
   },
   { collection: 'enroll-courses' }
 )

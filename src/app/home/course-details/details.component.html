@@ -14,28 +14,31 @@
               <div class="card-body mt-5">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Course Name</div>
-                  <h5 class="card-title">{{data.coursename}}</h5>
+                  <h5 class="card-title">{{courseData.coursename}}</h5>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Price</div>
-                  <div class="fw-bold fs-6">{{data.price}} $</div>
+                  <div class="fw-bold fs-6">{{courseData.price}} $</div>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Country</div>
-                  <div class="fs-6">{{data.country}}</div>
+                  <div class="fs-6">{{courseData.country}}</div>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex fs-6 align-items-center">
                   <div class="flex-grow-1">Description</div>
-                  <p class="card-text">{{data.description}}</p>
+                  <p class="card-text">{{courseData.description}}</p>
                 </div>
                 <hr class="my-2">
-                <a class="btn btn-pink rounded-pill mt-3" *ngIf="user" (click)="enrollCourse(data)">Enroll Course <i
-                    class="fas fa-chevron-right"></i></a>
-                <a class="btn btn-pink rounded-pill mt-3" *ngIf="!user" routerLink="/login">Enroll Course <i
-                    class="fas fa-chevron-right"></i></a>
+                <span *ngIf="result">
+                  <a class="btn btn-pink rounded-pill mt-3" *ngIf="user" (click)="enrollCourse(courseData)">Enroll
+                    Course
+                    <i class="fas fa-chevron-right"></i></a>
+                  <a class="btn btn-pink rounded-pill mt-3" *ngIf="!user" routerLink="/login">Enroll Course <i
+                      class="fas fa-chevron-right"></i></a>
+                </span>
               </div>
             </div>
 

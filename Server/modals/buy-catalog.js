@@ -30,6 +30,11 @@ const CatalogSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users'
     },
+    catalogId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users',
+      required: true,
+    },
   }, { timestamps: true },
   { collection: 'buy-catalogs' }
 )
