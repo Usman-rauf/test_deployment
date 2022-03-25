@@ -79,21 +79,8 @@ router.get('/profile', verifyToken, async (req, res) => {
 
 router.get('/home-profile', async (req, res) => {
   const { id } = req.query
-  console.log('Public Profile', id)
-  // var result = [];
 
   try {
-    // result.push(new Promise(async (resolve, reject) => {
-    //   const output = await Course.findOne({ teacherId: id });
-    //   resolve(output);
-    // }));
-    // result.push(new Promise(async (resolve, reject) => {
-    //   const output1 = await Catalog.findOne({ teacherId: id });
-    //   resolve(output1);
-    // }));
-
-    // return res.status(200).json(await Promise.all(result));
-
     const profile = await User.find({ _id: id });
     const output = await Course.find({ teacherId: id });
     const output1 = await Catalog.find({ teacherId: id });
@@ -126,13 +113,29 @@ router.put('/user-bio', verifyToken, async (req, res) => {
   }
 })
 
-router.put('/user-education', verifyToken, async (req, res) => {
+router.put('/add-education', verifyToken, async (req, res) => {
   const { education } = req.body
-  console.log(education)
+  console.log({ "Add Education": education })
   const userId = req.user.id
 
   try {
-    const user_profile = await User.updateOne({ _id: userId }, { $set: { education } })
+    const user_profile = await User.updateOne({ _id: userId }, { $push: { education: education } })
+    return res.status(200).json(user_profile);
+  } catch (error) {
+    if (error.code === 400) {
+      return res.json({ status: 'error', error: 'Bad Request' })
+    }
+    throw error
+  }
+})
+
+router.put('/user-education', verifyToken, async (req, res) => {
+  const { education, index } = req.body
+  console.log(education, index);
+  const userId = req.user.id
+
+  try {
+    const user_profile = await User.updateOne({ _id: userId }, { $set: { [`education.${index}`]: education } })
     return res.status(200).json(user_profile);
   } catch (error) {
     if (error.code === 400) {

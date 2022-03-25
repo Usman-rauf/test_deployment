@@ -2,11 +2,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const bcrypt = require('bcryptjs')
 const User = require("../../modals/users")
+const Review = require("../../modals/users-review")
 const jwt = require('jsonwebtoken')
 const config = require("../../config")
 const { body, validationResult } = require('express-validator')
 const passValidator = require("../../modals/password-validation")
 const verifyToken = require('../../middleware/auth')
+var ObjectID = require('mongodb').ObjectID;
+
 
 const router = express()
 router.use(bodyParser.json())
@@ -138,15 +141,18 @@ router.post('/forgot-password', async (req, res) => {
 
   const { email } = req.body.email;
 
-  if (!(email)) {
+  if (!email) {
     return res.json({ status: 'error', error: 'Field is Empty' })
   }
 
   const response = await User.findOne({ email: email }).then(user => {
     if (user) {
-      return res.json({ status: 'ok', message: 'Email found' })
+      return res.json({
+        status: 'ok', message: 'Email found', user
+      })
     } else {
-      return res.status(401).json({
+      return res.json({
+        status: '401',
         message: 'The email address ' + req.body.email.email +
           ' is not associated with any account. Double-check your email address and try again.',
       })
@@ -155,8 +161,8 @@ router.post('/forgot-password', async (req, res) => {
 
 })
 
-router.post('/create-password', async (req, res) => {
-  const { password: plainTextPassword, confirmpassword } = req.body;
+router.post('/reset-password', async (req, res) => {
+  const { id, password: plainTextPassword, confirmpassword } = req.body;
 
   if (!(plainTextPassword && confirmpassword)) {
     return res.json({ status: 'error', error: 'Field is Empty' })
@@ -176,9 +182,7 @@ router.post('/create-password', async (req, res) => {
   password = await bcrypt.hash(plainTextPassword, 8)
 
   try {
-    const response = await User.updateOne({
-      password
-    })
+    const response = await User.updateOne({ _id: id }, { $set: { password: password } })
     res.json({ status: 'ok', message: "Password Changed Successfully", response })
   } catch (error) {
     if (error.code === 400) {
@@ -190,7 +194,6 @@ router.post('/create-password', async (req, res) => {
 
 router.post('/settings', verifyToken, async (req, res) => {
   const { name, email, currentpassword: plainTextPassword, newpassword } = req.body;
-  console.log(req.body)
   try {
     const userId = req.user.id
     const teacherId = req.user.id
@@ -257,6 +260,52 @@ router.post('/settings', verifyToken, async (req, res) => {
     throw error
   }
 
+})
+
+router.post('/users-review', verifyToken, async (req, res) => {
+  const { id, name, email, message } = req.body.userData
+  const reviewId = id
+  const userId = req.user.id
+  console.log(reviewId)
+
+
+  if (!(email, name, message)) {
+    return res.json({ status: 'error', error: 'Field is Empty' })
+  }
+
+  try {
+    const response = await Review.create({
+      userId,
+      reviewId,
+      name,
+      email,
+      message
+    })
+    res.json({ status: 'ok', message: "User Review Successful", response })
+  } catch (error) {
+    if (error.code === 403) {
+      return res.json({ status: 'error' })
+    }
+    throw error
+  }
+})
+
+router.get('/users-review', async (req, res) => {
+  const id = req.query.id
+  try {
+    const review = await Review.find({ reviewId: new ObjectID(id) })
+    if (review) {
+      res.json({ status: 'ok', message: "Review", review })
+    }
+    else {
+      return res.json({ status: 'error', error: 404, message: "Not Found" })
+    }
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.json({ status: 'error', error: '403' })
+    }
+    throw error
+  }
 })
 
 module.exports = router

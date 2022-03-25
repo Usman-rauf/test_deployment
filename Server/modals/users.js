@@ -46,9 +46,9 @@ const UserSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
-    education: {
+    education: [{
       type: String,
-    },
+    }],
   }, { timestamps: true },
   { collection: 'users' }
 )

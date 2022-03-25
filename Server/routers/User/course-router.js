@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const Course = require("../../modals/cousres")
+const Review = require("../../modals/course-review")
 const Enroll = require('../../modals/enroll-course')
 const verifyToken = require("../../middleware/auth")
+var ObjectID = require('mongodb').ObjectID;
 
 
 const router = express()
@@ -10,8 +12,6 @@ router.use(bodyParser.json())
 
 router.post('/course', verifyToken, async (req, res) => {
   const { Image, coursename, country, price, description } = req.body.data
-
-  console.log(req.body.data)
 
   console.log({ "Cousrses": req.body.data })
   const teacherId = req.user.id
@@ -76,7 +76,6 @@ router.get('/get-courses', async (req, res) => {
 
 router.get('/single-course', async (req, res) => {
   const { id } = req.query
-  console.log(id)
   try {
     const course = await Course.findById({ _id: id })
     if (course) { res.json({ status: 'ok', message: "Courses", course }) }
@@ -113,7 +112,6 @@ router.get('/teacher-courses', verifyToken, async (req, res) => {
 router.get('/students-courses', verifyToken, async (req, res) => {
   try {
     const userId = req.user.id
-    console.log(userId)
 
     if (!userId) {
       return res.json({ status: '404', error: 'Courses not Found' })
@@ -133,9 +131,9 @@ router.get('/students-courses', verifyToken, async (req, res) => {
 
 router.put('/course', verifyToken, async (req, res) => {
   const { Image, coursename, country, price, description } = req.body.data
-  console.log(req.body.data)
+  const id = req.body.course_id
 
-  const userId = req.user.id;
+  const teacherId = req.user.id;
   if (!(Image, coursename, country, price, description)) {
     return res.json({ status: 'error', error: 'Field is Empty' })
   }
@@ -145,10 +143,11 @@ router.put('/course', verifyToken, async (req, res) => {
   }
 
   try {
-    const response = await Course.updateOne({
-      userId, Image, coursename, country, price, description
+    const response = await Course.updateOne({ _id: new ObjectID(id) }, {
+      teacherId, Image, coursename, country, price, description
     })
     res.json({ status: 'ok', message: "Course Updated Successful", response })
+
   } catch (error) {
     if (error.code === 11000) {
       return res.json({ status: 'error', error: '403' })
@@ -173,5 +172,48 @@ router.delete('/course', verifyToken, async function (req, res) {
   }
 })
 
+router.post('/course-review', verifyToken, async (req, res) => {
+  const { id, name, email, message } = req.body.courseData
+  const courseId = id
+  const userId = req.user.id
+
+  if (!(email, name, message)) {
+    return res.json({ status: 'error', error: 'Field is Empty' })
+  }
+
+  try {
+    const response = await Review.create({
+      userId,
+      courseId,
+      name,
+      email,
+      message
+    })
+    res.json({ status: 'ok', message: "Cousre Review Successful", response })
+  } catch (error) {
+    if (error.code === 403) {
+      return res.json({ status: 'error' })
+    }
+    throw error
+  }
+})
+
+router.get('/review-course', async (req, res) => {
+  const id = req.query.id
+  try {
+    const review = await Review.find({ courseId: new ObjectID(id) })
+    if (review) {
+      res.json({ status: 'ok', message: "Review", review })
+    }
+    else {
+      return res.json({ status: 'error', error: 404, message: "Not Found" })
+    }
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.json({ status: 'error', error: '403' })
+    }
+    throw error
+  }
+})
 
 module.exports = router
