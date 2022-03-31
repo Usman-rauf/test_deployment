@@ -22,16 +22,12 @@
     "socket.io-client": "^4.4.1"
   },
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
-    "ng": "ng",
+    
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "build": "ng build",
-    "test":"ng test"
-    "Lint": "ng Lint",
-    "e2e": "ng e2e"
-  },
-  "scripts": {
+    "dev": "nodemon app.js"
+  
+ },
+  
 
   "keywords": [],
   "author": "",
